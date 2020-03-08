@@ -1,0 +1,9 @@
+127.0.0.1 - - [16/Sep/2019:16:24:51 +0800] "GET / HTTP/1.1" 404 1036
+0:0:0:0:0:0:0:1 - - [16/Sep/2019:16:24:52 +0800] "GET /MyBookStore/login.jsp HTTP/1.1" 200 1363
+0:0:0:0:0:0:0:1 - - [16/Sep/2019:16:24:52 +0800] "GET /MyBookStore/css/style.css HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [16/Sep/2019:16:24:52 +0800] "GET /MyBookStore/images/button_search.gif HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [16/Sep/2019:16:24:52 +0800] "GET /MyBookStore/images/logo.gif HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [16/Sep/2019:16:24:52 +0800] "GET /MyBookStore/images/login_lock.gif HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [16/Sep/2019:16:24:52 +0800] "GET /MyBookStore/images/button_login.gif HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [16/Sep/2019:16:24:52 +0800] "GET /MyBookStore/images/button_register.gif HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [16/Sep/2019:16:25:12 +0800] "POST /MyBookStore/BbsServlet?type=login HTTP/1.1" 500 1744

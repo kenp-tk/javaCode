@@ -1,25 +1,82 @@
 package com.e3mall.service.impl;
 
 
+import java.util.Date;
 import java.util.List;
 
+import javax.annotation.Resource;
+import javax.jms.Destination;
+import javax.jms.JMSException;
+import javax.jms.Message;
+import javax.jms.Session;
+import javax.jms.TextMessage;
+
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.jms.core.JmsTemplate;
+import org.springframework.jms.core.MessageCreator;
 import org.springframework.stereotype.Service;
 
+import com.e3mall.conmon.jedis.JedisClient;
+import com.e3mall.conmon.pojo.EasyUIDataGridResult;
+import com.e3mall.conmon.utils.E3Result;
+import com.e3mall.conmon.utils.IDUtils;
+import com.e3mall.conmon.utils.JsonUtils;
+import com.e3mall.mapper.TbItemDescMapper;
 import com.e3mall.mapper.TbItemMapper;
+import com.e3mall.mapper.TbItemParamItemMapper;
 import com.e3mall.pojo.TbItem;
+import com.e3mall.pojo.TbItemDesc;
+import com.e3mall.pojo.TbItemDescExample;
 import com.e3mall.pojo.TbItemExample;
 import com.e3mall.pojo.TbItemExample.Criteria;
+import com.e3mall.pojo.TbItemParamItem;
+import com.e3mall.pojo.TbItemParamItemExample;
 import com.e3mall.service.ItemService;
-
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+/**
+ *   商品信息的管理
+ * 
+ * */
 @Service
 public class ItemServiceImpl implements ItemService{
 
 	@Autowired
 	private TbItemMapper tbItemMapper;
+	@Autowired
+	private TbItemDescMapper tbItemDescMapper;
+	@Autowired
+	private TbItemParamItemMapper tbItemParamItemMapper;  
+	
+	@Autowired
+	private JmsTemplate jmsTemplate;
+	@Resource
+	private Destination topicDestination;
+	@Autowired 
+	private JedisClient jedisClient;
+	
+	@Value("${REDIS_ITEM_PRE}")
+	private String REDIS_ITEM_PRE;
+	
+	@Value("${ITEM_CACHE_EXPIRE}")
+	private Integer ITEM_CACHE_EXPIRE;
+	
 	
 	@Override
 	public TbItem getItemById(long itemId) {
+		//查询缓存
+			try {
+				String string = jedisClient.get(REDIS_ITEM_PRE+ ":" + itemId + ":BASE");
+				if(StringUtils.isNotBlank(string)){
+					TbItem tbItem = JsonUtils.jsonToPojo(string, TbItem.class);
+					return tbItem;
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		
 		//  tbItemMapper.selectByPrimaryKey(itemId);  根据id主键直接查询
 		
 		//  设置条件查询信息
@@ -33,10 +90,173 @@ public class ItemServiceImpl implements ItemService{
 		List<TbItem> list = tbItemMapper.selectByExample(example);
 		
 		if(list != null && list.size() > 0) {
+			//添加缓存
+			try {
+				
+				jedisClient.set(REDIS_ITEM_PRE+ ":" + itemId + ":BASE", JsonUtils.objectToJson(list.get(0))); 
+				//设置缓存存入数据的过期时间
+				jedisClient.expire(REDIS_ITEM_PRE+ ":" + itemId + ":BASE", ITEM_CACHE_EXPIRE);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			return list.get(0);
 		}
 		
 		return null;
 	}
+
+	@Override
+	public EasyUIDataGridResult getItemList(int page, int rows) {
+		//设置分页信息
+		PageHelper.startPage(page,rows);
+		
+		//执行查询语句
+		TbItemExample example = new TbItemExample();
+		List<TbItem> list = tbItemMapper.selectByExample(example);
+		
+		//设置返回结果的值
+		EasyUIDataGridResult easyUIDataGridResult = new EasyUIDataGridResult();
+		easyUIDataGridResult.setRows(list);
+		
+		//获取分页结果
+		PageInfo<TbItem> pageInfo = new PageInfo<TbItem>(list);
+		//获取总记录数
+		long total = pageInfo.getTotal();
+		easyUIDataGridResult.setTotal(total);
+		
+		return easyUIDataGridResult;
+	}
+
+	
+	public E3Result addItem(TbItem item, String desc,String itemParams) {
+		//使用工具类生成商品  ID
+		final long itemId = IDUtils.genItemId();
+		//填入Id到item对象中
+		item.setId(itemId);
+		//设置状态/创建时间/更新时间  状态对应关系: 1-正常,2-下架,3-删除  
+		item.setStatus((byte) 1);
+		item.setCreated(new Date());
+		item.setUpdated(new Date());
+		//向商品表插入数据
+		tbItemMapper.insert(item);
+		//创建一个商品描述表对应的 pojo对象  用来存储传过来的商品信息
+		TbItemDesc tbItemDesc = new TbItemDesc();
+		//设置 tbItemDesc 对象的属性
+		tbItemDesc.setItemId(itemId);
+		tbItemDesc.setItemDesc(desc);
+		tbItemDesc.setCreated(new Date());
+		tbItemDesc.setUpdated(new Date());
+		//添加数据到商品描述表中
+		tbItemDescMapper.insert(tbItemDesc);
+		//添加商品的规格参数
+		TbItemParamItem itemParamItem = new TbItemParamItem();
+		//设置  TbItemParamItem 规格参数  类补全
+		itemParamItem.setItemId(itemId);
+		itemParamItem.setParamData(itemParams);
+		itemParamItem.setCreated(new Date());
+		itemParamItem.setUpdated(new Date());
+		//添加规格参数
+		tbItemParamItemMapper.insert(itemParamItem);
+		
+			/*发送商品添加消息*/
+			jmsTemplate.send(topicDestination,new MessageCreator() {
+				
+				@Override
+				public Message createMessage(Session session) throws JMSException {
+					TextMessage textMessage = session.createTextMessage(itemId + "");
+					return textMessage;
+				}
+			});
+		
+		//返回成功数据
+		return E3Result.ok();
+	}
+
+	@Override
+	public E3Result deleteItem(List<Long> ids) {
+		//生成规格参数的条件
+		TbItemParamItemExample example = new TbItemParamItemExample();
+		com.e3mall.pojo.TbItemParamItemExample.Criteria criteria = example.createCriteria();
+		//根据id  查询但需要删除的数据
+		
+		//执行商品删除操作
+		for(Long id : ids ) {
+			tbItemMapper.deleteByPrimaryKey(id);
+		}
+		//删除商品描述表中的数据
+		for(Long id : ids ) {
+			tbItemDescMapper.deleteByPrimaryKey(id);
+		}
+		//删除 商品的规格参数
+		for (Long id : ids) {
+			//根据商品id  进行删除
+			criteria.andItemIdEqualTo(id);
+			//执行删除
+			tbItemParamItemMapper.deleteByExample(example);
+		}
+
+		//返回执行成功
+		return E3Result.ok();
+	}
+
+	@Override
+	public E3Result updateItem(TbItem item, String desc) {
+		//将商品修改
+		TbItemExample example = new TbItemExample();
+		//设置根据条件传过来的商品ID修改
+		Criteria criteria = example.createCriteria();
+		criteria.andIdEqualTo(item.getId());
+		//执行修改商品的操作
+		tbItemMapper.updateByExampleSelective(item, example);
+		
+		//修改商品描述表的信息
+		//创建商品描述类
+		TbItemDesc tbItemDesc = new TbItemDesc();
+		//更新商品信息
+		tbItemDesc.setItemDesc(desc);
+		tbItemDesc.setUpdated(new Date());
+		//设置条件
+		TbItemDescExample descExample = new TbItemDescExample();
+		com.e3mall.pojo.TbItemDescExample.Criteria criteria2 = descExample.createCriteria();
+		criteria2.andItemIdEqualTo(item.getId());
+		//执行修改商品描述的操作
+		tbItemDescMapper.updateByExampleSelective(tbItemDesc, descExample);
+		
+		return E3Result.ok();
+	}
+
+	@Override
+	public TbItemDesc getItemDescById(long itemDescId) {
+		//查询缓存
+		try {
+			String string = jedisClient.get(REDIS_ITEM_PRE+ ":" + itemDescId + ":DESC");
+			if(StringUtils.isNotBlank(string)){
+				TbItemDesc tbItemDesc = JsonUtils.jsonToPojo(string, TbItemDesc.class);
+				return tbItemDesc;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		// 设置查询条件
+		TbItemDescExample example = new TbItemDescExample();
+		com.e3mall.pojo.TbItemDescExample.Criteria criteria = example.createCriteria();
+		criteria.andItemIdEqualTo(itemDescId);
+		
+		// 根据商品id查询商品描述
+		 List<TbItemDesc> list = tbItemDescMapper.selectByExampleWithBLOBs(example);
+		 TbItemDesc itemDesc = list.get(0);
+		//把结果添加到缓存
+			try {
+				jedisClient.set(REDIS_ITEM_PRE + ":" + itemDescId + ":DESC", JsonUtils.objectToJson(list.get(0)));
+				//设置过期时间
+				jedisClient.expire(REDIS_ITEM_PRE + ":" + itemDescId + ":DESC", ITEM_CACHE_EXPIRE);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		
+		return itemDesc;
+	}
+
+	
 	
 }

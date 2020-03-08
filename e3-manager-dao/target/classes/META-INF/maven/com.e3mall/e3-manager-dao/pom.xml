@@ -45,28 +45,28 @@
   </dependencies>
   
   	 <!-- 如果不添加此节点mybatis的mapper.xml文件都会被漏掉。 -->
-	<build>
-		<resources>
-            <resource>
-            <!-- 表示指定  src/main/java 为资源目录  将会去除  src/main/resources 文件夹 -->
-                <directory>src/main/java</directory>
-                <includes>
-                    <include>**/*.properties</include>
-                    <include>**/*.xml</include>
-                </includes>
-                <filtering>false</filtering>
-            </resource>
-            <!--  如果想将两个文件夹都绑定为资源文件目录  那么需要添加下面的代码 -->
-           <!--  <resource>  
-                <directory>src/main/resources</directory>表示指定  src/main/java 为资源目录  将会去除  src/main/resources 文件夹
-                <includes>
-                    <include>**/*.properties</include>
-                    <include>**/*.xml</include>
-                </includes>
-                <filtering>false</filtering>
-            </resource>-->
-        </resources> 
-	</build>
+		<build>
+			<resources>
+	            <resource>
+	            <!-- 表示指定  src/main/java 为资源目录  将会去除  src/main/resources 文件夹 -->
+	                <directory>src/main/java</directory>
+	                <includes>
+	                    <include>**/*.properties</include>
+	                    <include>**/*.xml</include>
+	                </includes>
+	                <filtering>false</filtering>
+	            </resource>
+	            <!--  如果想将两个文件夹都绑定为资源文件目录  那么需要添加下面的代码 -->
+	           <!--  <resource>  
+	                <directory>src/main/resources</directory>表示指定  src/main/java 为资源目录  将会去除  src/main/resources 文件夹
+	                <includes>
+	                    <include>**/*.properties</include>
+	                    <include>**/*.xml</include>
+	                </includes>
+	                <filtering>false</filtering>
+	            </resource>-->
+	        </resources> 
+		</build>
   	 
   
   

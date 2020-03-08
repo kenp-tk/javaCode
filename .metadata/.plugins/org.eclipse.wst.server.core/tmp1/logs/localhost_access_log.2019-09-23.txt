@@ -1,0 +1,6 @@
+127.0.0.1 - - [23/Sep/2019:16:23:26 +0800] "GET / HTTP/1.1" 404 1036
+0:0:0:0:0:0:0:1 - - [23/Sep/2019:16:23:28 +0800] "GET /MyBookStore/ HTTP/1.1" 200 1913
+0:0:0:0:0:0:0:1 - - [23/Sep/2019:16:23:28 +0800] "GET /MyBookStore/css/style.css HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [23/Sep/2019:16:23:28 +0800] "GET /MyBookStore/images/button_shop.gif HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [23/Sep/2019:16:23:28 +0800] "GET /MyBookStore/images/button_search.gif HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [23/Sep/2019:16:23:28 +0800] "GET /MyBookStore/images/logo.gif HTTP/1.1" 304 -

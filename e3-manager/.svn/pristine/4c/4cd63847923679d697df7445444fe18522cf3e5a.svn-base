@@ -1,0 +1,102 @@
+package com.e3mall.service.impl;
+
+
+import java.util.Date;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.e3mall.conmon.pojo.EasyUIDataGridResult;
+import com.e3mall.conmon.utils.E3Result;
+import com.e3mall.conmon.utils.IDUtils;
+import com.e3mall.mapper.TbItemDescMapper;
+import com.e3mall.mapper.TbItemMapper;
+import com.e3mall.pojo.TbItem;
+import com.e3mall.pojo.TbItemDesc;
+import com.e3mall.pojo.TbItemExample;
+import com.e3mall.pojo.TbItemExample.Criteria;
+import com.e3mall.service.ItemService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+/**
+ *   商品信息的管理
+ * 
+ * */
+@Service
+public class ItemServiceImpl implements ItemService{
+
+	@Autowired
+	private TbItemMapper tbItemMapper;
+	@Autowired
+	private TbItemDescMapper tbItemDescMapper;
+	
+	@Override
+	public TbItem getItemById(long itemId) {
+		//  tbItemMapper.selectByPrimaryKey(itemId);  根据id主键直接查询
+		
+		//  设置条件查询信息
+		
+		TbItemExample example = new TbItemExample();
+		Criteria criteria = example.createCriteria();
+		
+		//设置根据值为itemId的条件查询
+		criteria.andIdEqualTo(itemId);
+		 
+		List<TbItem> list = tbItemMapper.selectByExample(example);
+		
+		if(list != null && list.size() > 0) {
+			return list.get(0);
+		}
+		
+		return null;
+	}
+
+	@Override
+	public EasyUIDataGridResult getItemList(int page, int rows) {
+		//设置分页信息
+		PageHelper.startPage(page,rows);
+		
+		//执行查询语句
+		TbItemExample example = new TbItemExample();
+		List<TbItem> list = tbItemMapper.selectByExample(example);
+		
+		//设置返回结果的值
+		EasyUIDataGridResult easyUIDataGridResult = new EasyUIDataGridResult();
+		easyUIDataGridResult.setRows(list);
+		
+		//获取分页结果
+		PageInfo<TbItem> pageInfo = new PageInfo<TbItem>(list);
+		//获取总记录数
+		long total = pageInfo.getTotal();
+		easyUIDataGridResult.setTotal(total);
+		
+		return easyUIDataGridResult;
+	}
+
+	@Override
+	public E3Result addItem(TbItem item, String desc) {
+		//使用工具类生成商品  ID
+		long itemId = IDUtils.genItemId();
+		//填入Id到item对象中
+		item.setId(itemId);
+		//设置状态/创建时间/更新时间  状态对应关系: 1-正常,2-下架,3-删除  
+		item.setStatus((byte) 1);
+		item.setCreated(new Date());
+		item.setUpdated(new Date());
+		//向商品表插入数据
+		tbItemMapper.insert(item);
+		//创建一个商品描述表对应的 pojo对象  用来存储传过来的商品信息
+		TbItemDesc tbItemDesc = new TbItemDesc();
+		//设置 tbItemDesc 对象的属性
+		tbItemDesc.setItemId(itemId);
+		tbItemDesc.setItemDesc(desc);
+		tbItemDesc.setCreated(new Date());
+		tbItemDesc.setUpdated(new Date());
+		//添加数据到商品描述表中
+		tbItemDescMapper.insert(tbItemDesc);
+		//返回成功数据
+		return E3Result.ok();
+	}
+	
+}

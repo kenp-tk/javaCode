@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
-	<item key="DIALOG_X_ORIGIN" value="536"/>
-	<item key="DIALOG_Y_ORIGIN" value="150"/>
-	<item key="DIALOG_WIDTH" value="866"/>
-	<item key="DIALOG_HEIGHT" value="562"/>
-	<item key="DIALOG_FONT_NAME" value="1|Microsoft YaHei UI|9.07563|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|Microsoft YaHei UI"/>
+	<item key="DIALOG_WIDTH" value="740"/>
+	<item key="DIALOG_FONT_NAME" value="1|微软雅黑|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|微软雅黑"/>
+	<item key="DIALOG_HEIGHT" value="551"/>
+	<item key="DIALOG_X_ORIGIN" value="598"/>
+	<item key="DIALOG_Y_ORIGIN" value="161"/>
 </section>

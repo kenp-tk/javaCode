@@ -1,7 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
-	<section name="MavenProjectWizardLocationPage">
-		<list key="location">
+	<section name="MavenProjectWizardArtifactPage">
+		<list key="groupId">
+			<item value="com.e3mall"/>
+		</list>
+		<list key="name">
+		</list>
+		<list key="artifactId">
+			<item value="e3-order-web"/>
+			<item value="e3-parent"/>
+			<item value="e3-order-service"/>
+			<item value="e3-order"/>
+			<item value="e3-order-interface"/>
+			<item value="e3-cart-web"/>
+			<item value="e3-cart-service"/>
+			<item value="e3-cart"/>
+			<item value="e3-cart-interface"/>
+			<item value="e3-sso-web"/>
+			<item value="e3-sso-service"/>
+			<item value="e3-sso"/>
+			<item value="e3-sso-interface"/>
+			<item value="e3-item-web"/>
+			<item value="e3-search-service"/>
+		</list>
+		<list key="projectNameTemplate">
+			<item value="[artifactId]"/>
+			<item value="[artifactId]-TRUNK"/>
+			<item value="[artifactId]-[version]"/>
+			<item value="[groupId].[artifactId]"/>
+			<item value="[groupId].[artifactId]-[version]"/>
+			<item value="[name]"/>
+		</list>
+		<list key="version">
+			<item value="0.0.1-SNAPSHOT"/>
+		</list>
+	</section>
+	<section name="org.eclipse.m2e.core.pom.dependencies">
+	</section>
+	<section name="org.eclipse.m2e.core.pom.overview">
+		<list key="ciManagementUrl">
+		</list>
+		<list key="ciManagementSystem">
+		</list>
+		<list key="issueManagementSystem">
+		</list>
+		<list key="issueManagementUrl">
+		</list>
+	</section>
+	<section name="MavenProjectImportWizardPage">
+		<list key="rootDirectory">
+			<item value="E:\学习资料文件\JAVA项目资料\项目\e3商城_day01\黑马32期\01.教案-3.0\01.参考资料\mybatis\pagehelper-fix"/>
+			<item value="E:\学习资料文件\JAVA项目资料\项目\e3商城_day02\项目二_day02\source\e3-manager"/>
+			<item value="E:\maven-workspace"/>
+			<item value="E:\maven-workspace\"/>
+			<item value="E:\maven-workspace\e3-manager"/>
+			<item value="E:\maven-workspace\e3-common"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>
@@ -13,6 +66,66 @@
 		</list>
 	</section>
 	<section name="MavenProjectWizardArchetypePage">
+		<item key="catalog" value="All Catalogs"/>
+		<list key="projectNameTemplate">
+			<item value="[artifactId]"/>
+			<item value="[artifactId]-TRUNK"/>
+			<item value="[artifactId]-[version]"/>
+			<item value="[groupId].[artifactId]"/>
+			<item value="[groupId].[artifactId]-[version]"/>
+			<item value="[name]"/>
+		</list>
+	</section>
+	<section name="MavenModuleWizardParentPage">
+		<list key="moduleName">
+			<item value="e3-order-service"/>
+			<item value="e3-order-interface"/>
+			<item value="e3-cart-service"/>
+			<item value="e3-cart-interface"/>
+			<item value="e3-sso-service"/>
+			<item value="e3-sso-interface"/>
+			<item value="e3-search-service"/>
+			<item value="e3-search-interface"/>
+			<item value="e3-content-service"/>
+			<item value="e3-content-interface"/>
+			<item value="e3-manager-web"/>
+			<item value="e3-manager-service"/>
+			<item value="e3-manager-interface"/>
+			<item value="e3-manager-dao"/>
+			<item value="e3-manager-pojo"/>
+		</list>
+		<list key="projectNameTemplate">
+			<item value="[artifactId]"/>
+			<item value="[artifactId]-TRUNK"/>
+			<item value="[artifactId]-[version]"/>
+			<item value="[groupId].[artifactId]"/>
+			<item value="[groupId].[artifactId]-[version]"/>
+			<item value="[name]"/>
+		</list>
+	</section>
+	<section name="MavenCheckoutLocationPage">
+		<list key="scmUrl">
+		</list>
+		<list key="projectNameTemplate">
+			<item value="[artifactId]"/>
+			<item value="[artifactId]-TRUNK"/>
+			<item value="[artifactId]-[version]"/>
+			<item value="[groupId].[artifactId]"/>
+			<item value="[groupId].[artifactId]-[version]"/>
+			<item value="[name]"/>
+		</list>
+	</section>
+	<section name="MavenProjectWizardLocationPage">
+		<list key="location">
+			<item value="E:\maven-workspace\e3-order"/>
+			<item value="E:\maven-workspace\e3-cart\e3-cart-service"/>
+			<item value="E:\maven-workspace\e3-cart"/>
+			<item value="E:\maven-workspace\e3-sso\e3-sso-service"/>
+			<item value="E:\maven-workspace\e3-search"/>
+			<item value="E:\maven-workspace\e3-manager\e3-manager-dao"/>
+			<item value="E:\maven-workspace\e3-common"/>
+			<item value="E:\maven-workspace\e3-manager"/>
+		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>
 			<item value="[artifactId]-TRUNK"/>
@@ -39,51 +152,6 @@
 		</list>
 		<list key="version">
 			<item value="0.0.1-SNAPSHOT"/>
-		</list>
-	</section>
-	<section name="MavenProjectWizardArtifactPage">
-		<list key="groupId">
-			<item value="com.maven"/>
-		</list>
-		<list key="name">
-		</list>
-		<list key="artifactId">
-			<item value="EMPTest01"/>
-			<item value="TestAdd"/>
-		</list>
-		<list key="projectNameTemplate">
-			<item value="[artifactId]"/>
-			<item value="[artifactId]-TRUNK"/>
-			<item value="[artifactId]-[version]"/>
-			<item value="[groupId].[artifactId]"/>
-			<item value="[groupId].[artifactId]-[version]"/>
-			<item value="[name]"/>
-		</list>
-		<list key="version">
-			<item value="0.0.1-SNAPSHOT"/>
-		</list>
-	</section>
-	<section name="org.eclipse.m2e.core.pom.overview">
-	</section>
-	<section name="org.eclipse.m2e.core.pom.dependencies">
-	</section>
-	<section name="org.eclipse.m2e.core.ui.internal.dialogs.MavenRepositorySearchDialog">
-		<item key="width" value="480"/>
-		<item key="height" value="664"/>
-		<item key="x" value="720"/>
-		<item key="y" value="73"/>
-	</section>
-	<section name="MavenProjectImportWizardPage">
-		<list key="rootDirectory">
-			<item value="F:\maven-workspace\e3-manager"/>
-		</list>
-		<list key="projectNameTemplate">
-			<item value="[artifactId]"/>
-			<item value="[artifactId]-TRUNK"/>
-			<item value="[artifactId]-[version]"/>
-			<item value="[groupId].[artifactId]"/>
-			<item value="[groupId].[artifactId]-[version]"/>
-			<item value="[name]"/>
 		</list>
 	</section>
 </section>

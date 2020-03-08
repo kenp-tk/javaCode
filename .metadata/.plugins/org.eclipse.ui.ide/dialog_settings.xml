@@ -1,22 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
+	<section name="CleanDialogSettings">
+		<item key="DIALOG_WIDTH" value="500"/>
+		<item key="TOGGLE_SELECTED" value="false"/>
+		<item key="DIALOG_HEIGHT" value="416"/>
+		<item key="DIALOG_X_ORIGIN" value="710"/>
+		<item key="DIALOG_Y_ORIGIN" value="243"/>
+	</section>
 	<section name="ExternalProjectImportWizard">
 		<item key="WizardProjectsImportPage.STORE_NESTED_PROJECTS" value="false"/>
 		<item key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID" value="true"/>
 		<item key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED" value="false"/>
 		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
-			<item value="F:\学习文件\实例项目\宜立方项目"/>
+			<item value="D:\maven-workspace\generatorSqlmapCustom"/>
+			<item value="G:\移动文件\虚拟机\E3项目代码"/>
+			<item value="H:\移动文件\虚拟机\支付宝支付"/>
+			<item value="E:\学习资料文件\JAVA项目资料\项目\e3商城_day01\黑马32期\01.教案-3.0\01.参考资料\FastDFS\bin\fastdfs_client"/>
+			<item value="H:\项目练习\宜立方项目\"/>
+			<item value="H:\项目练习\宜立方项目\e3-parent"/>
+			<item value="E:\学习资料文件\JAVA项目资料\项目\e3商城_day01\黑马32期\01.教案-3.0\01.参考资料\mybatis\逆向工程\generatorSqlmapCustom"/>
+			<item value="E:\spring-workspace\Spring_Exams"/>
+			<item value="E:\书城项目"/>
+			<item value="E:\Maven项目管理\实例\2019 08 30\MavenProject04"/>
 		</list>
 		<list key="WizardProjectsImportPage.STORE_ARCHIVES">
 			<item value=""/>
 		</list>
 	</section>
-	<section name="ChooseWorkspaceDialogSettings">
-		<item key="DIALOG_X_ORIGIN" value="586"/>
-		<item key="DIALOG_Y_ORIGIN" value="274"/>
-	</section>
 	<section name="WORKBENCH_SETTINGS">
 		<list key="ENABLED_TRANSFERS">
 		</list>
+	</section>
+	<section name="NewWizardAction">
+	</section>
+	<section name="ChooseWorkspaceDialogSettings">
+		<item key="DIALOG_X_ORIGIN" value="651"/>
+		<item key="DIALOG_Y_ORIGIN" value="316"/>
+	</section>
+	<section name="SaveAsDialogSettings">
+		<item key="DIALOG_WIDTH" value="525"/>
+		<item key="DIALOG_FONT_NAME" value="1|微软雅黑|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|微软雅黑"/>
+		<item key="DIALOG_HEIGHT" value="598"/>
+		<item key="DIALOG_X_ORIGIN" value="706"/>
+		<item key="DIALOG_Y_ORIGIN" value="130"/>
 	</section>
 </section>

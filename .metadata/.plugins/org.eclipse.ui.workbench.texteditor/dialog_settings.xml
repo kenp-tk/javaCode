@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.wst.dtd.ui.internal.preferences.DTDTemplatePreferencePage$DTDEditTemplateDialog_dialogBounds">
+		<item key="DIALOG_WIDTH" value="617"/>
+		<item key="DIALOG_FONT_NAME" value="1|微软雅黑|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|微软雅黑"/>
+		<item key="DIALOG_HEIGHT" value="361"/>
+		<item key="DIALOG_X_ORIGIN" value="71"/>
+		<item key="DIALOG_Y_ORIGIN" value="199"/>
+	</section>
+	<section name="org.eclipse.ui.texteditor.GotoLineAction$GotoLineDialog_dialogBounds">
+		<item key="DIALOG_X_ORIGIN" value="729"/>
+		<item key="DIALOG_Y_ORIGIN" value="390"/>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item key="isRegEx" value="false"/>
+		<item key="selection" value="select"/>
+		<item key="casesensitive" value="false"/>
+		<item key="incremental" value="false"/>
+		<item key="wrap" value="true"/>
+		<item key="wholeword" value="false"/>
+		<list key="findhistory">
+			<item value="select"/>
+			<item value="com.alipay"/>
+			<item value="final"/>
+			<item value="orderForm"/>
+			<item value="cartHostUrl"/>
+			<item value="cartAdd"/>
+			<item value="/order/order-cart"/>
+			<item value="itemParamAddTable.submit"/>
+			<item value="itemParamAddTable"/>
+			<item value="addGroupTr"/>
+			<item value="initItemCat"/>
+			<item value="localhost"/>
+			<item value="e3-portal-web"/>
+			<item value="JedisClient"/>
+			<item value="tCol tSubtotal"/>
+		</list>
+		<list key="replacehistory">
+			<item value=" "/>
+			<item value="192.168.48.240"/>
+			<item value="e3-order-web"/>
+			<item value="e3-cart-web"/>
+			<item value="/"/>
+			<item value=""/>
+			<item value="com.e3mall"/>
+		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item key="DIALOG_WIDTH" value="354"/>
+		<item key="DIALOG_FONT_NAME" value="1|Microsoft YaHei UI|9.07563|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|Microsoft YaHei UI"/>
+		<item key="DIALOG_HEIGHT" value="453"/>
+		<item key="DIALOG_X_ORIGIN" value="1244"/>
+		<item key="DIALOG_Y_ORIGIN" value="328"/>
+	</section>
+</section>

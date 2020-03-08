@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;UserInfo.java&apos; to &apos;BookStore/src/com.ssm.pojo&apos;&#x0D;&#x0A;- Original project: &apos;ssm-test-pojo&apos;&#x0D;&#x0A;- Destination element: &apos;BookStore/src/com.ssm.pojo&apos;&#x0D;&#x0A;- Original element: &apos;com.ssm.pojo.UserInfo.java&apos;" description="Copy compilation unit" destination="=BookStore/src&lt;com.ssm.pojo" element1="/src\/main\/java&lt;com.ssm.pojo{UserInfo.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1569460795144" units="1" version="1.0"/>
+</session>

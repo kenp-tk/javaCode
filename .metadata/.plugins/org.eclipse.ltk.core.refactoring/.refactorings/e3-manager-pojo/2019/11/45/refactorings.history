@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move element &apos;TbItemParamEx.java&apos; to &apos;e3-manager-pojo/src/main/java/com.e3mall.pojo.model&apos;&#x0D;&#x0A;- Original project: &apos;e3-manager-pojo&apos;&#x0D;&#x0A;- Destination element: &apos;e3-manager-pojo/src/main/java/com.e3mall.pojo.model&apos;&#x0D;&#x0A;- Original element: &apos;com.e3mall.pojo.TbItemParamEx.java&apos;&#x0D;&#x0A;- Update references to refactored element" description="Move compilation unit" destination="/src\/main\/java&lt;com.e3mall.pojo.model" element1="/src\/main\/java&lt;com.e3mall.pojo{TbItemParamEx.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.move" patterns="*" policy="org.eclipse.jdt.ui.moveResources" qualified="false" references="true" stamp="1573182569565" units="1" version="1.0"/>
+</session>

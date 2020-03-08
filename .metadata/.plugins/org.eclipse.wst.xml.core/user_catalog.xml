@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+  <uri name="http://mybatis.org/dtd/mybatis-3-config.dtd" uri="file:///E:/Mybatis数据库应用/组件/mybatis-3.4.5/mybatis-3.4.5/mybatis-3.4.5/org/apache/ibatis/builder/xml/mybatis-3-config.dtd"/>
+  <uri name="http://mybatis.org/dtd/mybatis-3-mapper.dtd" uri="file:///E:/Mybatis数据库应用/组件/mybatis-3.4.5/mybatis-3.4.5/mybatis-3.4.5/org/apache/ibatis/builder/xml/mybatis-3-mapper.dtd"/>
+  <uri name="http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd" uri="file:///D:/dubbo/dubbo.xsd"/>
+</catalog>
